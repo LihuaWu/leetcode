@@ -29,6 +29,7 @@ TEST (nextPermutation, NormalCase) {
 		nextPermutation(v);
 	}
 	EXPECT_EQ(1, 1);
+	EXPECT_EQ(1, 1);
 }
 
 

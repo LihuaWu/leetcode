@@ -7,26 +7,33 @@
 using namespace std;
 
 int trapRainWater(const vector<int>& v) {
-	int max_height = 0;
 	int idx = 0;
-	for(int i = 0; i < v.size(); ++i) {
-		if (v[i] > max_height) {
-			max_height = v[i];
+	int size = v.size();
+	for(int i = 0; i < size; ++i) {
+		if (v[i] > v[idx]) {
 			idx = i;	
 		}
 	}
 	int ret = 0;
 	for (int i = 0, peak = 0; i < idx; ++i) {
-		if (A[i] > peak) peak = A[i];
-		else ret += max_height - v[i];
+		if (v[i] > peak) peak = v[i];
+		else ret += peak - v[i];
 	}
-	for (int i = n - 1, peak = 0; i > idx; --i) {
-		if (A[i] > peak) peak = A[i];
-		else ret += max_height - v[i];
+	for (int i = size - 1, peak = 0; i > idx; --i) {
+		if (v[i] > peak) peak = v[i];
+		else ret += peak - v[i];
 	}
 	return ret;
 }
 
-int main() {
-	return 0;
+TEST (trapRainWater, peakCase) {
+	int A[] = {0, 2, 0};
+	vector<int> v(A, A + sizeof(A)/sizeof(int));
+	int ret = trapRainWater(v);
+	EXPECT_EQ(0, ret);
+}
+
+int main(int argc, char** argv) {
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }

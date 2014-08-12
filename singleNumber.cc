@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 
 #include <gtest/gtest.h>
 
@@ -10,6 +11,24 @@ int singleNumber(const vector<int>& v) {
 		x ^= v[i];
 	}
 	return x;
+}
+
+int singleNumber2(const vector<int>& v) {
+	int x = 0;
+	const int W = sizeof(int) * 8;
+	int count[W];
+	fill(count, count + W, 0);
+	for(int i = 0; i < v.size(); ++i) {
+		for (int j = 0; j < W; ++j) {
+			count[j] += (A[i] >> j) & 0x1;
+		}
+	} 
+	int result = 0;
+	for (int i = 0; i < W; i++) {
+		count[i] %= 3;
+		result += (count[i] << i);
+	}
+	return result;
 }
 
 TEST (singleNumber, case1) {

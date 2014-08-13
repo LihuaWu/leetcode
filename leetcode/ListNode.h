@@ -12,4 +12,4 @@ struct ListNode {
 ListNode* vector2List(const vector<int>& A); 
 void list2vector(ListNode* l, vector<int>& v);
 ListNode* add(ListNode* lhs, ListNode* rhs);
-ListNode* partialReverseList(ListNode(* head); 
+ListNode* partialReverseList(ListNode* head); 

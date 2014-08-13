@@ -39,5 +39,42 @@ add(ListNode* lhs, ListNode* rhs) {
 	return dummy.next;
 }
 
-ListNode* partialReverseList(ListNode(* head) {
+ListNode* partialReverseList(ListNode* head, int m, int n) {
+	ListNode dummy(0);
+	dummy.next = head;
+	ListNode* prev = &dummy;
+	for (int i = 0; i < m - 1; ++i){
+		prev = prev->next;
+	}
+	ListNode* const start = prev;
+	prev = start->next;
+	ListNode* cur = prev->next;
+	for(int i = m; i < n; ++i) {
+		prev->next = cur->next;
+		cur->next = start->next;
+		start->next = cur;
+		cur = prev->next;
+	}
+	return dummy.next;
+}
+
+ListNode* listPartition(ListNode* head, int val) {
+	ListNode dummy(0);
+	ListNode dummy2(0);
+
+	ListNode* lhs = &dummy;
+	ListNode* rhs = &dummy2;
+
+	for(ListNode* cur = head; cur; cur = cur->next) {
+		if(cur->val < val) {
+			lhs->next = cur;
+			lhs = cur;
+		}else {
+			rhs->next = cur;
+			rhs = cur;
+		}
+	}
+	lhs->next = dummy2.next;
+	rhs->next = NULL;
+	return dummy.next;
 }

@@ -97,24 +97,29 @@ ListNode* listRemoveDuplicates(ListNode* head){
 
 
 ListNode* listRemoveDuplicates2(ListNode* head){
-
-	if(head == NULL || head->next == NULL) return head;
-
+	if (head == NULL) return head;
 	ListNode dummy(head->val + 1);
 	dummy.next = head;
 
-	ListNode* prev = &dummy;
-
-	int dup = head->val;
-
-	for(ListNode* cur = head; cur->next; cur = prev->next) {
-		if(dup == cur->next->val) {
-			prev->next = cur->next;
-			delete cur;
-		}else {
-			dup = cur->next->val;
-			prev = cur;	
+	ListNode* prev = &dummy, *cur = head;
+	while(cur != NULL) {
+		bool dup = false;
+		while(cur->next != NULL && cur->val == cur->next->val) {
+			dup = true;
+			ListNode* to_delete = cur;
+			cur = cur->next;
+			delete to_delete;
+		}
+		if(dup) {
+			ListNode* to_delete = cur;
+			cur = cur->next;
+			delete to_delete;
+		} else {
+			prev->next = cur;
+			prev = cur;
+			cur = cur->next;
 		}
 	}
+	prev->next = cur;
 	return dummy.next;
 }

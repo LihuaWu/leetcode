@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "ListNode.h"
 
 ListNode* vector2List(const vector<int>& A) {
@@ -76,5 +78,43 @@ ListNode* listPartition(ListNode* head, int val) {
 	}
 	lhs->next = dummy2.next;
 	rhs->next = NULL;
+	return dummy.next;
+}
+
+ListNode* listRemoveDuplicates(ListNode* head){
+	if(head == NULL) return head;
+	for(ListNode* prev = head, *cur = prev->next;
+			cur; cur = cur->next) {
+		if(prev->val == cur->val) {
+			prev->next = cur->next;
+			delete cur;
+		}else {
+			prev = cur;
+		}
+	}
+	return head;
+}
+
+
+ListNode* listRemoveDuplicates2(ListNode* head){
+
+	if(head == NULL || head->next == NULL) return head;
+
+	ListNode dummy(head->val + 1);
+	dummy.next = head;
+
+	ListNode* prev = &dummy;
+
+	int dup = head->val;
+
+	for(ListNode* cur = head; cur->next; cur = prev->next) {
+		if(dup == cur->next->val) {
+			prev->next = cur->next;
+			delete cur;
+		}else {
+			dup = cur->next->val;
+			prev = cur;	
+		}
+	}
 	return dummy.next;
 }

@@ -14,3 +14,5 @@ void list2vector(ListNode* l, vector<int>& v);
 ListNode* add(ListNode* lhs, ListNode* rhs);
 ListNode* partialReverseList(ListNode* head, int , int); 
 ListNode* listPartition(ListNode*, int);
+ListNode* listRemoveDuplicates(ListNode* head);
+ListNode* listRemoveDuplicates2(ListNode* head);

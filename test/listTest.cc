@@ -77,6 +77,32 @@ TEST (listPartition, Case1) {
 	EXPECT_EQ(expected, ret);
 }
 
+TEST (listRemoveDuplicates, Case1) {
+	int A[] = {1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7};
+	int B[] = {1, 2, 3, 4, 5, 6, 7};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = listRemoveDuplicates(a);
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
+TEST (listRemoveDuplicates2, Case1) {
+	int A[] = {1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7};
+	int B[] = {1, 7};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = listRemoveDuplicates2(a);
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
 int main(int argc, char** argv){
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();

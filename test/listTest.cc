@@ -103,6 +103,117 @@ TEST (listRemoveDuplicates2, Case1) {
 	EXPECT_EQ(expected, ret);
 }
 
+TEST (listRotate, Case1) {
+	int A[] = {1, 2, 3, 4, 5};
+	int B[] = {3, 4, 5, 1, 2};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+	
+	ListNode* result = listRotate(a, 3);
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
+TEST (listRotate, Case2) {
+	int A[] = {1};
+	int B[] = {1};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = listRotate(a, 1);
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
+TEST (listRotate, Case3) {
+	int A[] = {};
+	int B[] = {};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = listRotate(a, 0);
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
+TEST (removeNthNodeFromEnd, Case1) {
+	int A[] = {1, 2, 3, 4, 5};
+	int B[] = {1, 2, 3, 5};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = removeNthNodeFromEnd(a, 2);
+
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
+TEST (removeNthNodeFromEnd, Case2) {
+	int A[] = {1, 2, 3, 4, 5};
+	int B[] = {1, 2, 3, 5};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = removeNthNodeFromEnd(a, 2);
+
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
+TEST (nodeSwap, Case1) {
+	int A[] = {1, 2, 3, 4, 5};
+	int B[] = {2, 1, 4, 3, 5};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = nodeSwap(a);
+
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
+TEST (reverseNodesInKGroup, Case1) {
+	int A[] = {1, 2, 3, 4, 5};
+	int B[] = {2, 1, 4, 3, 5};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = reverseNodesInKGroup2(a, 2);
+
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+	
+}
+
+TEST (reverseNodesInKGroup, Case2) {
+	int A[] = {1, 2, 3, 4, 5};
+	int B[] = {3, 2, 1, 4, 5};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = reverseNodesInKGroup2(a, 3);
+
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+	
+}
+
 int main(int argc, char** argv){
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();

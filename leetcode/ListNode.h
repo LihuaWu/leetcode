@@ -6,6 +6,7 @@ using namespace std;
 struct ListNode {
 	int val;
 	ListNode* next;	
+	ListNode* random;
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
@@ -16,3 +17,10 @@ ListNode* partialReverseList(ListNode* head, int , int);
 ListNode* listPartition(ListNode*, int);
 ListNode* listRemoveDuplicates(ListNode* head);
 ListNode* listRemoveDuplicates2(ListNode* head);
+ListNode* listRotate(ListNode* head, int k);
+ListNode* removeNthNodeFromEnd(ListNode* head, int k);
+ListNode* nodeSwap(ListNode* head);
+ListNode* reverseNodesInKGroup(ListNode* head, int k);
+ListNode* reverse(ListNode* prev, ListNode* begin, ListNode* end); 
+ListNode* reverseNodesInKGroup2(ListNode* head, int k); 
+ListNode* copyRandomList(ListNode* head);

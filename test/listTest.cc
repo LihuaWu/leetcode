@@ -214,6 +214,20 @@ TEST (reverseNodesInKGroup, Case2) {
 	
 }
 
+TEST (listReorder, Case1) {
+	int A[] = {1, 2, 3, 4, 5};
+	int B[] = {1, 5, 2, 4, 3};
+
+	ListNode* a = array2List(A, sizeof(A)/sizeof(int));
+	vector<int> expected(B, B + sizeof(B)/sizeof(int));
+
+	ListNode* result = listReorder(a);
+
+	vector<int> ret;
+	list2vector(result, ret);
+	EXPECT_EQ(expected, ret);
+}
+
 int main(int argc, char** argv){
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();

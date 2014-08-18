@@ -24,3 +24,7 @@ ListNode* reverseNodesInKGroup(ListNode* head, int k);
 ListNode* reverse(ListNode* prev, ListNode* begin, ListNode* end); 
 ListNode* reverseNodesInKGroup2(ListNode* head, int k); 
 ListNode* copyRandomList(ListNode* head);
+bool hasCycle(ListNode* head); 
+ListNode* cycleBegin(ListNode* head);
+ListNode* listReorder(ListNode* head);
+ListNode* reverseList(ListNode* head);

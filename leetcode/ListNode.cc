@@ -266,4 +266,79 @@ ListNode* copyRandomList(ListNode* head) {
 	return dummy.next;
 }
 
+bool hasCycle(ListNode* head) {
+	ListNode *slow = head, *fast = head;
+	while(fast && fast->next) {
+		slow = slow->next;
+		fast = fast->next->next;
+		if(slow == fast) {
+			return true;
+		}
+	}
+	return false;
+}
 
+ListNode* cycleBegin(ListNode* head) {
+	ListNode* slow = head, *fast = head;
+	bool hasCycle = false;
+	while (fast && fast->next) {
+		slow = slow->next;
+		fast = fast->next->next;
+		if(slow == fast) {
+			hasCycle = true;
+			break;
+		}
+	}
+	if (hasCycle) {
+		ListNode* start = head;
+		while(start != slow) {
+			start = start->next;
+			slow = slow->next;
+		}
+		return slow;
+	}
+	return NULL;
+}
+
+ListNode* reverseList(ListNode* head) {
+	if(head == NULL || head->next == NULL) return head;	
+
+	ListNode* prev = head;
+	for(ListNode *cur = prev->next, *next = cur->next;
+			cur;
+			prev = cur, cur = next, next = next ? next->next : NULL) {
+		cur->next = prev;
+	}
+	head->next = NULL;
+	return prev;
+}
+
+ListNode* listReorder(ListNode* head) {	
+	ListNode dummy(0);
+	dummy.next = head;
+	ListNode *prev = &dummy;
+
+	ListNode *slow = head, *fast = head; 
+
+	while(fast && fast->next) {
+		prev = prev->next;
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+
+	prev->next = NULL;
+
+	slow = reverseList(slow);
+
+	ListNode* cur = head;
+
+	while(cur->next) {
+		ListNode* cur_next = cur->next;
+		cur->next = slow;
+		slow = slow->next;
+		cur->next->next = cur_next;
+		cur = cur_next;
+	}
+	cur->next = slow;
+	return dummy.next;
+}
